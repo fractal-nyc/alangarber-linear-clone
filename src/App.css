@@ -14,8 +14,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--background);
   color: var(--text);
   line-height: 1.6;
@@ -116,7 +117,9 @@ nav {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   border-left: 4px solid var(--accent);
 }
 
@@ -224,7 +227,9 @@ nav {
 }
 
 /* Forms */
-.task-form, .task-edit-form form, .theme-creator form {
+.task-form,
+.task-edit-form form,
+.theme-creator form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -241,7 +246,9 @@ nav {
   font-size: 0.9rem;
 }
 
-.form-group input, .form-group textarea, .form-group select {
+.form-group input,
+.form-group textarea,
+.form-group select {
   padding: 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -251,7 +258,9 @@ nav {
   font-size: 1rem;
 }
 
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
@@ -431,4 +440,112 @@ nav {
   color: var(--text);
   opacity: 0.7;
   font-style: italic;
+}
+
+/* Theme Management Styles */
+.theme-management {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.themes-management {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.theme-list h3,
+.theme-creator-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.theme-card {
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.2s;
+}
+
+.theme-card:hover {
+  transform: translateY(-3px);
+}
+
+.active-theme {
+  box-shadow: 0 0 0 2px var(--primary) !important;
+}
+
+.theme-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-card-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.active-label {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.color-preview {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.color-pill {
+  height: 15px;
+  flex: 1;
+  border-radius: 4px;
+}
+
+.theme-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.use-theme-btn {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delete-theme-btn {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 0.4rem;
+}
+
+.delete-theme-btn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.theme-creator-section {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1.5rem;
 }
