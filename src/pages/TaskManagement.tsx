@@ -1,61 +1,60 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
-import useTaskStore from '../store/taskStore';
-import useThemeStore from '../store/themeStore';
-import ThemeCreator from '../components/ThemeCreator';
-import { TaskInput } from '../types';
+import { useState, FormEvent, ChangeEvent } from "react";
+import useTaskStore from "../store/taskStore";
+import useThemeStore from "../store/themeStore";
+import { TaskInput } from "../types";
 
 function TaskManagement() {
   const { tasks, addTask, updateTask, deleteTask } = useTaskStore();
   const { themes, activeThemeId } = useThemeStore();
-  
+
   // Local state for new task form
   const [newTask, setNewTask] = useState<TaskInput>({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     themeId: activeThemeId,
   });
-  
+
   // State for editing title inline
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
-  const [editTitle, setEditTitle] = useState<string>('');
-  
+  const [editTitle, setEditTitle] = useState<string>("");
+
   // Handle creating a new task
   const handleCreateTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newTask.title.trim() === '') return;
-    
+    if (newTask.title.trim() === "") return;
+
     addTask(newTask);
-    
+
     // Reset form
     setNewTask({
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       themeId: activeThemeId,
     });
   };
-  
+
   // Begin editing task title
   const startEditingTitle = (taskId: string, currentTitle: string) => {
     setEditingTaskId(taskId);
     setEditTitle(currentTitle);
   };
-  
+
   // Save edited title
   const saveEditedTitle = (id: string) => {
-    if (editTitle.trim() !== '') {
+    if (editTitle.trim() !== "") {
       updateTask(id, { title: editTitle });
     }
     setEditingTaskId(null);
   };
-  
+
   // Handle inputs for new task form
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setNewTask(prev => ({
+    setNewTask((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -75,7 +74,7 @@ function TaskManagement() {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <textarea
@@ -86,7 +85,7 @@ function TaskManagement() {
               rows={3}
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="themeId">Theme</label>
             <select
@@ -102,16 +101,13 @@ function TaskManagement() {
               ))}
             </select>
           </div>
-          
-          <button type="submit" className="btn create-btn">Create Task</button>
+
+          <button type="submit" className="btn create-btn">
+            Create Task
+          </button>
         </form>
       </div>
-      
-      <div className="management-section">
-        <h2>Create Custom Theme</h2>
-        <ThemeCreator />
-      </div>
-      
+
       <div className="management-section">
         <h2>All Tasks</h2>
         <div className="all-tasks-list">
@@ -120,7 +116,7 @@ function TaskManagement() {
           ) : (
             tasks.map((task) => {
               const taskTheme = themes[task.themeId] || themes.light;
-              
+
               return (
                 <div
                   key={task.id}
@@ -137,16 +133,24 @@ function TaskManagement() {
                         onChange={(e) => setEditTitle(e.target.value)}
                         autoFocus
                       />
-                      <button onClick={() => saveEditedTitle(task.id)}>Save</button>
+                      <button onClick={() => saveEditedTitle(task.id)}>
+                        Save
+                      </button>
                     </div>
                   ) : (
-                    <div className="task-title" onClick={() => startEditingTitle(task.id, task.title)}>
+                    <div
+                      className="task-title"
+                      onClick={() => startEditingTitle(task.id, task.title)}
+                    >
                       {task.title}
                     </div>
                   )}
-                  
+
                   <div className="task-actions">
-                    <span className="theme-indicator" style={{ backgroundColor: taskTheme.accent }}>
+                    <span
+                      className="theme-indicator"
+                      style={{ backgroundColor: taskTheme.accent }}
+                    >
                       {taskTheme.name}
                     </span>
                     <button
